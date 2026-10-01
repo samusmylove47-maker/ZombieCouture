@@ -39,4 +39,4 @@ Software WebGL is slow: a 720p frame takes seconds. The farm is resumable, so a 
 
 ## Licence
 
-The code is MIT, see `LICENSE`. The Fredoka One font in `assets/` is under the SIL Open Font License 1.1 (`assets/OFL.txt`). Other dependencies are listed in `THIRD_PARTY_NOTICES.md`. The song and the finished film are not part of this repository, and neither they nor the lyrics are covered by the MIT licence.
+The code is MIT, see `LICENSE`. The fonts in `assets/` (Fredoka One for the film, Barlow Condensed for the thumbnail label) are under the SIL Open Font License 1.1 (`assets/OFL.txt`, `assets/OFL-BarlowCondensed.txt`). Other dependencies are listed in `THIRD_PARTY_NOTICES.md`. The song and the finished film are not part of this repository, and neither they nor the lyrics are covered by the MIT licence.

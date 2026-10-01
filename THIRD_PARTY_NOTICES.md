@@ -9,6 +9,8 @@ and the font's own name table); a cell that says "not verified" could not be rea
 **Fredoka One Regular** (`assets/FredokaOne-Regular.ttf`, Version 1.001). Licence: SIL Open Font License 1.1, full text in `assets/OFL.txt`.
 Copyright string from the font's name table: "Copyright (c) 2011 Milena B Brandao (milenabbrandao@gmail.com), with Reserved Font Name "Fredoka"". The font is included unmodified.
 
+**Barlow Condensed** (`assets/BarlowCondensed-Bold.ttf`, `assets/BarlowCondensed-SemiBold.ttf`, Version 1.408). Used only by `tools/thumbnail.py`, for the label on the thumbnail. Licence: SIL Open Font License 1.1, full text in `assets/OFL-BarlowCondensed.txt`. Copyright string from the fonts' name tables: "Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)". These are the Latin subset of the Fontsource build (npm `@fontsource/barlow-condensed` 5.3.0, WOFF) saved as TrueType with fontTools; this project made no other change. The subset's name table carries no licence text, so the licence is the one stated in that package's LICENSE file.
+
 ## npm (`package.json`)
 
 | Package | Version | Licence | Copyright line as found |

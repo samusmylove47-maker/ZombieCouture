@@ -4,7 +4,8 @@
 #   tools/repo_bundle.sh [--out publish/repo] [--with-lyrics] [--with-tests] [--repo-url URL] [--video-url URL]
 #                        [--exclude PATH-GLOB]... [--allow-code-file PATH]...
 #
-# Contents: web/ tools/ docs/ (not docs/briefs/) assets/ (Fredoka One + OFL.txt made from the font's own name table) analysis/ (code, README,
+# Contents: web/ tools/ docs/ (not docs/briefs/) assets/ (Fredoka One + OFL.txt made from the font's own name table; any other .ttf there, e.g. the
+# thumbnail label's Barlow Condensed, gets its own OFL-<Family>.txt and a notice) analysis/ (code, README,
 # requirements only: no models, no audio, no caches, no validation runs) data/storyboard.json (+ data/shots.json if it exists) package.json
 # package-lock.json README.md (from publish/README.public.md + publish/credits.txt) LICENSE (MIT) THIRD_PARTY_NOTICES.md .gitignore.
 #   --with-lyrics   also data/lyrics.txt and data/timing.json (the words of the song) and no lyric-dump check.  Default: the lyrics stay out.
@@ -110,6 +111,29 @@ write("assets/OFL.txt", copyright_line + "\nThis Font Software is licensed under
       "This license is copied below, and is also available with a FAQ at:\nhttp://scripts.sil.org/OFL\n\n\n" + body)
 emails = re.findall(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", copyright_line)
 open(os.path.join(stage, "..", ".stage_allow_email"), "w").write("".join(e + "\n" for e in emails))
+
+# ---- the other fonts in assets/ (the thumbnail label's Barlow Condensed): one OFL-<Family>.txt per copyright string, read from the name table
+import glob
+extra_fonts = {}
+for fp in sorted(glob.glob("assets/*.ttf")):
+    if os.path.basename(fp) == os.path.basename(FONT):
+        continue
+    t = name_table(fp)
+    if not t.get(0):
+        sys.exit(f"{fp} has no copyright string in its name table, so no notice can be written for it")
+    extra_fonts.setdefault(t[0], []).append((fp, t))
+extra_text = ""
+for cr, items in extra_fonts.items():
+    fam = items[0][1].get(16) or items[0][1].get(1) or "Font"
+    ofl_name = "OFL-" + re.sub(r"[^A-Za-z0-9]+", "", fam) + ".txt"
+    write("assets/" + ofl_name, cr + "\nThis Font Software is licensed under the SIL Open Font License, Version 1.1.\n"
+          "This license is copied below, and is also available with a FAQ at:\nhttp://scripts.sil.org/OFL\n\n\n" + body)
+    files = ", ".join(f"`{fp}`" for fp, _ in items)
+    ver = items[0][1].get(5, "version not stated")
+    extra_text += (f"\n**{fam}** ({files}, {ver}). Used only by `tools/thumbnail.py`, for the label on the thumbnail. Licence: SIL Open Font License 1.1, "
+                   f"full text in `assets/{ofl_name}`. Copyright string from the fonts' name tables: \"{cr}\". These are the Latin subset of the Fontsource build "
+                   f"(npm `@fontsource/barlow-condensed` 5.3.0, WOFF) saved as TrueType with fontTools; this project made no other change. The subset's name "
+                   f"table carries no licence text, so the licence is the one stated in that package's LICENSE file.\n")
 
 # ---- LICENSE, .gitignore
 write("LICENSE", """MIT License
@@ -277,7 +301,7 @@ and the font's own name table); a cell that says "not verified" could not be rea
 
 **Fredoka One Regular** (`assets/FredokaOne-Regular.ttf`, {version}). Licence: SIL Open Font License 1.1, full text in `assets/OFL.txt`.
 Copyright string from the font's name table: "{copyright_line}". The font is included unmodified.
-
+{extra_text}
 ## npm (`package.json`)
 
 {table}{chr(10).join(npm_rows)}
