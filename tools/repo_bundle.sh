@@ -6,7 +6,7 @@
 #
 # Contents: web/ tools/ docs/ (not docs/briefs/) assets/ (Fredoka One + OFL.txt made from the font's own name table; any other .ttf there, e.g. the
 # thumbnail label's Barlow Condensed, gets its own OFL-<Family>.txt and a notice) analysis/ (code, README,
-# requirements only: no models, no audio, no caches, no validation runs) data/storyboard.json (+ data/shots.json if it exists) package.json
+# requirements only: no models, no audio, no caches, no validation runs) data/storyboard.json (+ data/shots.json and data/short.json if they exist) package.json
 # package-lock.json README.md (from publish/README.public.md + publish/credits.txt) LICENSE (MIT) THIRD_PARTY_NOTICES.md .gitignore.
 #   --with-lyrics   also data/lyrics.txt and data/timing.json (the words of the song) and no lyric-dump check.  Default: the lyrics stay out.
 #   --with-tests    also tests/ (fixtures and all)
@@ -60,7 +60,7 @@ find assets -type f \( -name '*.ttf' -o -name '*.otf' -o -name '*.woff2' \) -pri
 { printf '%s\0' analysis/README.md analysis/requirements.txt analysis/run_audio.sh analysis/.gitignore
   find analysis/zcaudio -type f -name '*.py' "${NOJUNK[@]}" -print0
   find analysis/validation -maxdepth 1 -type f \( -name '*.py' -o -name '*.md' \) -print0; } | add
-{ printf '%s\0' data/storyboard.json data/shots.json package.json package-lock.json
+{ printf '%s\0' data/storyboard.json data/shots.json data/short.json package.json package-lock.json
   [[ $WITH_LYRICS == 1 ]] && printf '%s\0' data/lyrics.txt data/timing.json
   [[ $WITH_TESTS == 1 ]] && find tests -type f "${NOJUNK[@]}" -print0
   true; } | add
@@ -206,7 +206,8 @@ readme = readme.replace("{{SCREENSHOT}}", shot_md).replace("{{CREDITS}}", "\n".j
 if video_url:
     readme = readme.replace("{{VIDEO_URL}}", video_url)
 else:
-    readme = readme.replace("Watch it: {{VIDEO_URL}}\n\n", "")      # no link yet, so no line (pass --video-url once the film is on YouTube)
+    # no link yet, so no line that carries the placeholder (pass --video-url once the film is on YouTube); the blank line after it goes too
+    readme = re.sub(r"^[^\n]*\{\{VIDEO_URL\}\}[^\n]*\n(?:[ \t]*\n)?", "", readme, flags=re.M)
 readme = readme.replace("{{REPO_URL}}", repo_url or "{{REPO_URL}}")
 write("README.md", readme)
 for left in re.findall(r"\{\{[A-Z_]+\}\}", readme):
