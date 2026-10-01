@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+# model weights are copied from the previous project's download folder (see README: models); too large for git
+models/
+# validation scratch: audio and caches are regenerated, JSON results and truth files are kept
+validation/**/cache/
+validation/**/*.wav
+validation/**/*.mp3
+validation/**/sep_run.log

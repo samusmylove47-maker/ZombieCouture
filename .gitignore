@@ -1,0 +1,14 @@
+node_modules/
+out/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+# the song and everything derived from it stays local
+*.mp3
+*.wav
+*.flac
+*.m4a
+data/audio/
+analysis/models/
+analysis/validation/*/

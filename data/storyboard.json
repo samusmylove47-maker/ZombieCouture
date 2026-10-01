@@ -1,0 +1,122 @@
+{
+ "schema": "zombie-couture.storyboard/1",
+ "tail": 6.0,
+ "front": [
+  {"at": "prechorus1:line2w5", "R": -1},
+  {"at": "prechorus1:line2w5+1b", "R": 0.25},
+  {"at": "prechorus1:end", "R": 2.6, "ease": "smooth"},
+  {"at": "chorus1:start", "R": 2.6},
+  {"at": "chorus1:line1w4", "R": 10, "ease": "smooth"},
+  {"at": "chorus1:line3", "R": 24, "ease": "smooth"},
+  {"at": "chorus1:line5", "R": 46, "ease": "smooth"},
+  {"at": "chorus3:line6", "R": 46},
+  {"at": "chorus3:end", "R": 170, "ease": "smooth"},
+  {"at": "outro1:end", "R": 560, "ease": "smooth"}
+ ],
+ "alive": "chorus1:line5",
+ "sections": [
+  {"id": "intro", "shots": [
+   {"id": "i1", "tpl": "deadWide", "w": 4, "min": 5, "max": 16, "in": "dip:0x000000", "cost": "A", "note": "black to cold flicker, the mall is dead, Pip the only colour"},
+   {"id": "i2", "tpl": "deadPush", "w": 3, "min": 4, "max": 12, "cost": "A"},
+   {"id": "i3", "tpl": "hubIdle", "w": 2, "min": 3, "max": 8, "cost": "A", "opt": true},
+   {"id": "i4", "tpl": "pipBack", "w": 3, "min": 4, "max": 12, "cost": "A"}
+  ]},
+  {"id": "verse1", "shots": [
+   {"id": "v1_01", "tpl": "barricadeWide", "w": 3, "min": 4, "max": 20, "note": "Barricaded in the mall"},
+   {"id": "v1_02", "tpl": "beansCU", "w": 2, "min": 3, "max": 16, "at": "verse1:line1w5", "cost": "A", "note": "last can of beans"},
+   {"id": "v1_03", "tpl": "pipListen", "w": 2, "min": 2, "max": 16, "at": "verse1:line2w1", "cost": "A", "note": "Heard the groans outside"},
+   {"id": "v1_04", "tpl": "groanGlass", "w": 2, "min": 3, "max": 16, "at": "verse1:line2w4", "note": "grey faces and palms on the glass"},
+   {"id": "v1_05", "tpl": "scratchCU", "w": 2, "min": 3, "max": 16, "at": "verse1:line3w1", "cost": "A", "note": "They scratched at the glass"},
+   {"id": "v1_06", "tpl": "cloudyEyes", "w": 2, "min": 3, "max": 16, "at": "verse1:line3w6", "cost": "A", "note": "eyes all cloudy white"},
+   {"id": "v1_07", "tpl": "doorOpenPip", "w": 3, "min": 4, "max": 16, "at": "verse1:line4w1", "note": "I opened the door"},
+   {"id": "v1_08", "tpl": "noBite", "w": 3, "min": 4, "max": 16, "at": "verse1:line4w5", "note": "and they didn't bite"}
+  ]},
+  {"id": "prechorus1", "shots": [
+   {"id": "p1_01", "tpl": "staringCrowd", "w": 2, "min": 3, "max": 20, "at": "prechorus1:line1w1", "note": "They just stood there staring"},
+   {"id": "p1_02", "tpl": "pipDecides", "w": 2, "min": 3, "max": 12, "at": "prechorus1:line1w7", "cost": "A", "note": "like they wanted to say"},
+   {"id": "p1_03", "tpl": "holdScraps", "w": 2, "min": 2, "max": 20, "at": "prechorus1:line2w1", "note": "Can you help us look cute"},
+   {"id": "p1_04", "tpl": "threadRun", "w": 2, "min": 3, "max": 20, "at": "prechorus1:line2w6", "note": "cute: the thread is pulled, the first ring of colour"},
+   {"id": "p1_05", "tpl": "needleReady", "w": 2, "min": 2, "max": 20, "note": "for the end of the day: the needle is raised"}
+  ]},
+  {"id": "chorus1", "shots": [
+   {"id": "c1_01", "tpl": "burst", "fix": 4},
+   {"id": "c1_02", "tpl": "sewMachine", "w": 2, "min": 3, "max": 16},
+   {"id": "c1_03", "tpl": "hemSweep", "w": 2, "min": 3, "max": 16, "at": "chorus1:line2w1"},
+   {"id": "c1_04", "tpl": "bodiceSweep", "w": 2, "min": 3, "max": 16, "at": "chorus1:line2w5"},
+   {"id": "c1_05", "tpl": "twirlLow", "w": 3, "min": 3, "max": 20, "at": "chorus1:line3w1"},
+   {"id": "c1_06", "tpl": "twirlCU", "w": 2, "min": 3, "max": 12, "at": "chorus1:line3w4", "cost": "A", "note": "twirling: a skirt flaring, close"},
+   {"id": "c1_07", "tpl": "pipHero", "w": 3, "min": 3, "max": 20, "at": "chorus1:line4w1"},
+   {"id": "c1_08", "tpl": "bopLine", "w": 2, "min": 3, "max": 12, "at": "chorus1:line4w3", "note": "can't be beat: a line of zombies bopping toward camera"},
+   {"id": "c1_09", "tpl": "titleStitch", "w": 3, "min": 4, "max": 20, "at": "chorus1:line5w1"},
+   {"id": "c1_10", "tpl": "coutureHits", "w": 2, "min": 3, "max": 12, "at": "chorus1:line5w3"},
+   {"id": "c1_11", "tpl": "adorableWide", "w": 3, "min": 3, "max": 20, "at": "chorus1:line6w1"},
+   {"id": "c1_12", "tpl": "pipWink", "w": 1, "min": 2, "max": 8, "at": "chorus1:line6w7", "cost": "A"}
+  ]},
+  {"id": "verse2", "shots": [
+   {"id": "v2_01", "tpl": "fitEstablish", "w": 3, "min": 4, "max": 20},
+   {"id": "v2_02", "tpl": "fitMedium", "w": 2, "min": 3, "max": 12, "at": "verse2:line1w1-1bar", "note": "last bar before the vocal"},
+   {"id": "v2_03", "tpl": "rackPan", "w": 2, "min": 3, "max": 12, "at": "verse2:line1w1", "cost": "A", "note": "Old prom dress"},
+   {"id": "v2_04", "tpl": "tulleCU", "w": 2, "min": 3, "max": 12, "at": "verse2:line1w5", "cost": "A", "note": "some tulle from the craft store"},
+   {"id": "v2_05", "tpl": "laceMacro", "w": 2, "min": 3, "max": 12, "at": "verse2:line2w1", "cost": "A", "note": "Stitched on lace collars"},
+   {"id": "v2_06", "tpl": "hemPinCU", "w": 2, "min": 3, "max": 12, "at": "verse2:line2w5", "cost": "A", "note": "added a little more"},
+   {"id": "v2_07", "tpl": "swayLine", "w": 2, "min": 3, "max": 12, "at": "verse2:line3w1", "note": "They sway when I'm finished"},
+   {"id": "v2_08", "tpl": "mirrorShot", "w": 2, "min": 3, "max": 12, "at": "verse2:line3w6", "note": "arms stretched out wide"},
+   {"id": "v2_09", "tpl": "braainsCaption", "w": 2, "min": 3, "max": 12, "at": "verse2:line4w1", "note": "Moaning braaains"},
+   {"id": "v2_10", "tpl": "unpickPride", "w": 2, "min": 3, "max": 12, "at": "verse2:line4w3", "note": "but I think they meant"},
+   {"id": "v2_11", "tpl": "prideWide", "w": 2, "min": 2, "max": 16, "at": "verse2:line4w8", "note": "pride"}
+  ]},
+  {"id": "prechorus2", "shots": [
+   {"id": "p2_01", "tpl": "runwayLow", "w": 3, "min": 4, "max": 16, "note": "No more biting, no more screams"},
+   {"id": "p2_02", "tpl": "runwayHeadOn", "w": 3, "min": 3, "max": 16, "at": "prechorus2:line2w1", "note": "Just catwalk struts"},
+   {"id": "p2_03", "tpl": "runwayPit", "w": 2, "min": 3, "max": 12, "at": "prechorus2:line2w5", "note": "and fashion dreams"}
+  ]},
+  {"id": "chorus2", "shots": [
+   {"id": "c2_01", "tpl": "partyWide", "fix": 4},
+   {"id": "c2_02", "tpl": "rosetteTop", "w": 2, "min": 3, "max": 16},
+   {"id": "c2_03", "tpl": "petalLow", "w": 2, "min": 3, "max": 16},
+   {"id": "c2_04", "tpl": "whipRing", "w": 2, "min": 3, "max": 12, "at": "chorus2:line2w1", "in": "whip"},
+   {"id": "c2_05", "tpl": "rosetteTilt", "w": 2, "min": 3, "max": 12, "at": "chorus2:line2w5", "note": "ribbons too"},
+   {"id": "c2_06", "tpl": "lockstepFront", "w": 2, "min": 3, "max": 16, "at": "chorus2:line3w1"},
+   {"id": "c2_07", "tpl": "twirlRing", "w": 2, "min": 3, "max": 12, "at": "chorus2:line3w4", "note": "twirling in the street"},
+   {"id": "c2_08", "tpl": "pipHero2", "w": 2, "min": 3, "max": 16, "at": "chorus2:line4w1", "note": "Apocalypse fashion"},
+   {"id": "c2_09", "tpl": "bopLine", "w": 2, "min": 3, "max": 12, "at": "chorus2:line4w3", "args": {"v": 2}, "note": "can't be beat"},
+   {"id": "c2_10", "tpl": "coutureHits2", "w": 3, "min": 4, "max": 16, "at": "chorus2:line5w1"},
+   {"id": "c2_11", "tpl": "confettiPeak", "w": 2, "min": 3, "max": 16, "at": "chorus2:line6w1"},
+   {"id": "c2_12", "tpl": "crowdCheer", "w": 1, "min": 2, "max": 8, "at": "chorus2:line6w6", "cost": "A"},
+   {"id": "c2_13", "tpl": "adorableWide", "w": 2, "min": 2, "max": 8, "at": "chorus2:line6w7", "args": {"v": 2}, "note": "adorable!"}
+  ]},
+  {"id": "bridge1", "shots": [
+   {"id": "b_01", "tpl": "doorSlider", "w": 4, "min": 6, "max": 24, "note": "They used to scare me, now they're my friends: the door, before and after (the seam sweeps on \"now they're my friends\")"},
+   {"id": "b_02", "tpl": "teaWide", "w": 2, "min": 3, "max": 16, "at": "bridge1:line2w1", "note": "We have tea parties"},
+   {"id": "b_04", "tpl": "armDrop", "w": 3, "min": 4, "max": 20, "at": "bridge1:line2w5", "note": "make amends"},
+   {"id": "b_05", "tpl": "armSew", "w": 3, "min": 3, "max": 12, "at": "bridge1:line3w1", "note": "A little thread: Pip lifts the arm off the table and carries it to the socket"},
+        {"id": "b_05b", "tpl": "armStitch", "w": 3, "min": 2, "max": 10, "at": "bridge1:line3w4", "note": "a little love: the needle circles the seam, the bow pops"},
+   {"id": "b_06", "tpl": "threadLift", "w": 3, "min": 5, "max": 20, "at": "bridge1:line4w1", "note": "Turns the end of days"},
+   {"id": "b_07", "tpl": "skyReveal", "w": 3, "min": 4, "max": 20, "at": "bridge1:line4w8", "cost": "C", "note": "above"}
+  ]},
+  {"id": "chorus3", "shots": [
+   {"id": "f_01", "tpl": "finaleWide", "w": 2, "min": 3, "max": 16, "in": "dip:0xfff0d0"},
+   {"id": "f_02", "tpl": "finaleOrbit", "w": 2, "min": 3, "max": 16, "at": "chorus3:line1w3", "note": "on the held \"dresses\": the slow orbit rides the whole note"},
+   {"id": "f_03", "tpl": "finaleLow", "w": 2, "min": 2, "max": 16, "at": "chorus3:line1w4", "note": "\"for the undead\": low push-in before the sunrise"},
+   {"id": "f_04", "tpl": "sunriseRoof", "w": 2, "min": 3, "max": 16, "at": "chorus3:line1w7", "cost": "B", "note": "the roof petals open on the sunrise"},
+   {"id": "f_05", "tpl": "pipBelt", "w": 2, "min": 3, "max": 16, "at": "chorus3:line2w1", "cost": "A"},
+   {"id": "f_06", "tpl": "confettiPeak", "w": 2, "min": 3, "max": 16, "at": "chorus3:line2w5", "args": {"v": 3}, "note": "ribbons too"},
+   {"id": "f_07", "tpl": "twirlRing", "w": 2, "min": 3, "max": 12, "at": "chorus3:line3w1", "args": {"v": 3}},
+   {"id": "f_08", "tpl": "finaleTop", "w": 2, "min": 3, "max": 16, "at": "chorus3:line3w4"},
+   {"id": "f_09", "tpl": "lockstepFront", "w": 2, "min": 3, "max": 16, "at": "chorus3:line4w1", "args": {"v": 3}},
+   {"id": "f_10", "tpl": "pipHero2", "w": 2, "min": 3, "max": 16, "at": "chorus3:line4w3", "args": {"v": 3}},
+   {"id": "f_11", "tpl": "coutureHits3", "w": 3, "min": 4, "max": 16, "at": "chorus3:line5w1"},
+   {"id": "f_12", "tpl": "craneOut", "w": 6, "min": 12, "max": 40, "at": "chorus3:line6w1", "cost": "C", "note": "we're all beautiful: up through the skylight, out over the quilt world"}
+  ]},
+  {"id": "outro1", "shots": [
+   {"id": "o_01", "tpl": "aerialQuilt", "w": 3, "min": 3, "max": 16, "cost": "C", "note": "the crane-out lands: orbiting the mall as a cake with its roof open like a flower, the pink ring at the horizon"},
+   {"id": "o_01b", "tpl": "horizonDrift", "fix": 3, "cost": "C", "held": "ok", "note": "ground level on the quilt: the felt sun rising over the cushion hills"},
+   {"id": "o_02", "tpl": "clickCU", "w": 2, "min": 3, "max": 12, "at": "outro1:line1w2", "cost": "A"},
+   {"id": "o_03", "tpl": "shyZombie", "w": 3, "min": 4, "max": 16, "at": "outro1:line2w1"},
+   {"id": "o_04", "tpl": "needleDown", "w": 2, "min": 3, "max": 8}
+  ]},
+  {"id": "card", "shots": [
+   {"id": "k_01", "tpl": "card", "w": 1, "min": 4, "max": 40, "in": "dip:0xfff4e0", "cost": "A"}
+  ]}
+ ]
+}

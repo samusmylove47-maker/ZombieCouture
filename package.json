@@ -1,0 +1,1 @@
+{"name":"zombie-couture","private":true,"version":"0.1.0","type":"module","description":"Zombie Couture music video: a procedural three.js world rendered headlessly, frame by frame.","dependencies":{"three":"^0.170.0"}}
