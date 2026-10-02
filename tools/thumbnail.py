@@ -15,6 +15,12 @@ The current thumbnail (the title card at 50.2 s, frame 1205, rendered clean as a
       --badge "CLAUDE|SONNET|5.5 MAX" --kicker "OFFICIAL|MUSIC VIDEO" --badge-cap 78
 
 Writes <out> (1280x720), <out stem>_1080.png (1920x1080) and <out stem>.jpg (1280x720, under 2 MB: YouTube's limit).
+
+The vertical Short's thumbnail (1080x1920): the same moment, rendered again in portrait through the Short's own framing, then the same ribbon and label.
+--size 1080x1920 writes <out> (the png at that size) and <out stem>.jpg (under 2 MB) and nothing else:
+  tools/render_all.sh short --from 50.2083333333 --to 50.2499 --fmt png --out out/frames/thumbshort1205 --q "short=/data/short.json" --foreground
+  python3 tools/thumbnail.py out/frames/thumbshort1205/f_01205.png --size 1080x1920 --out publish/thumb_short.png --text "" \
+      --tag "Even the dead deserve|to look adorable!" --tag-at 0.5,0.882 --tag-h 0.072 --badge "CLAUDE|SONNET|5.5 MAX" --kicker "OFFICIAL|MUSIC VIDEO" --badge-cap 84
 Lettering: Fredoka (assets/FredokaOne-Regular.ttf) in hot pink with a felt grain and a padded edge, a dashed cream stitch line inset along the
 letter outline, a paper-white outline and a plum drop shadow. It is meant to read at 320x180.
 """
@@ -374,6 +380,15 @@ def compose(src, text, tag, pos, tilt, out_w=1920, out_h=1080, width=None, tag_a
 def save_all(im, out):
     stem = os.path.splitext(out)[0]
     os.makedirs(os.path.dirname(os.path.abspath(out)), exist_ok=True)
+    if im.size != (1920, 1080):                                    # any other size (the vertical Short's 1080x1920): the png at that size and a jpg under 2 MB
+        im.save(out, optimize=True)
+        q = 95
+        while True:
+            im.save(f"{stem}.jpg", quality=q, subsampling=0)
+            if os.path.getsize(f"{stem}.jpg") < 1_900_000 or q <= 70:
+                break
+            q -= 4
+        return {p: os.path.getsize(p) / 1e6 for p in (out, f"{stem}.jpg")}
     im.resize((1280, 720), Image.LANCZOS).save(out, optimize=True)
     im.save(f"{stem}_1080.png", optimize=True)
     small = im.resize((1280, 720), Image.LANCZOS)
@@ -443,6 +458,7 @@ def main():
     ap.add_argument("--pos", default="auto", choices=["auto", "bl", "br", "tl", "tr", "center"])
     ap.add_argument("--tilt", type=float, default=-2.5)
     ap.add_argument("--width", type=float, default=None, help="title width as a fraction of the frame (default 0.50 for two lines): smaller keeps faces clear")
+    ap.add_argument("--size", default="1920x1080", help="output size WxH; 1080x1920 for the vertical Short (see the docstring)")
     ap.add_argument("--pick", action="store_true")
     ap.add_argument("--shots", default=os.path.join(ROOT, "data", "shots.json"))
     a = ap.parse_args()
@@ -452,11 +468,12 @@ def main():
         ap.error("give a rendered frame, or --pick")
     def xy(v):
         return tuple(float(t) for t in v.split(",")) if v and "," in v else v
-    im, where = compose(a.frame, a.text, a.tag, a.pos, a.tilt, width=a.width, tag_at=xy(a.tag_at), tag_h=a.tag_h, tag_tilt=a.tag_tilt,
+    ow, oh = (int(v) for v in a.size.lower().split("x"))
+    im, where = compose(a.frame, a.text, a.tag, a.pos, a.tilt, out_w=ow, out_h=oh, width=a.width, tag_at=xy(a.tag_at), tag_h=a.tag_h, tag_tilt=a.tag_tilt,
                         badge_lines=[t for t in a.badge.split("|") if t] or None, kicker=a.kicker, badge_at=xy(a.badge_at), badge_cap=a.badge_cap)
     sizes = save_all(im, a.out)
     print(f"title placed {where or 'none (the frame has its own)'}; " + ", ".join(f"{os.path.relpath(p)} {mb:.2f} MB" for p, mb in sizes.items()))
-    if sizes[a.out] > 2.0:
+    if sizes[a.out] > 2.0:                                          # (always true for the vertical png)
         print("note: the PNG is over 2 MB (YouTube's limit); upload the .jpg beside it")
     return 0
 
